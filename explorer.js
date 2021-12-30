@@ -1,7 +1,6 @@
 const express = require("express");
 const Web3 = require("web3");
-var url =
-  "https://speedy-nodes-nyc.moralis.io/5a44fcf4e7217768c3a7a948/eth/mainnet";
+var url ="";
 const web3 = new Web3(new Web3.providers.HttpProvider(url));
 const app = express();
 app.use(express.static("public"));
