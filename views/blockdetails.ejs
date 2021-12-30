@@ -1,0 +1,180 @@
+<html>
+    <head>
+        <style>
+            /* Styles go here */
+.div-1 {
+    background-color: #08385e;
+    height: 152px;
+    width: 1400px;
+}
+
+
+
+
+
+
+
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  margin-left:-5px;
+  margin-right:-5px;
+}
+  
+.column {
+  float: left;
+  width: 50%;
+  padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 16px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+h2{
+    color: #ffffff;
+}
+
+
+.outer{
+        padding-top: 0%;
+        list-style-type: none;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+    .box{
+        display: inline-block;
+        padding: 0%;
+        width: 300px;
+        background-color: rgba(243, 239, 239, 0.938);
+
+    }
+
+
+
+    input {
+    padding: 4px 10px;
+    border: 0;
+    font-size: 19px;
+    width: 55%;
+    
+  }
+  .submit {
+    width: 70px;
+    background-color: #1c87c9;
+    color: #ffffff;
+  }
+        </style>
+    </head>
+    <body>
+Ethereum explorer
+
+
+  
+
+  <form action="/" method="post" target="blank">
+
+ 
+ <!-- <input   placeholder="Txn Hash / Block Number / Address"
+/>
+<input type="submit" value="Submit" /> -->
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="text" name="txnHash"  id="search" autocomplete="off"  placeholder="Search by Address / Txn Hash / Block"/>
+<input type="submit" name="submit" class="submit" value="Search"/>
+</form>    
+<br>
+<h1>Block Height: <%= txnHash.number%></h1>
+<div class="hash-div-left-align">
+  <table style="border-spacing: 0 15px">
+    <tbody>
+    
+      
+      
+      <tr>
+        <td><b>Hash:</b></td>
+        <td><%= txnHash.hash%></td>
+      </tr>
+      <tr>
+        <td><b>Parent Hash:</b></td>
+        <td><%= txnHash.parentHash%></td>
+      </tr>
+      <tr>
+        <td><b>Sha3Uncles:</b></td>
+        <td><%= txnHash.sha3Uncles%></td>
+      </tr>
+      <tr>
+        <td><b>State Root:</b></td>
+        <td><%= txnHash.stateRoot%></td>
+      </tr>
+      <tr>
+        <%let count = 0; for(let i=0;i<=txnHash.transactions.length-1;i++)
+        {count++};%>
+        <td><b>Transactions:</b></td>
+        <td><%= count%> txns</td>
+      </tr>
+      <tr>
+        <td><b>Mined By:</b></td>
+        <td><%= txnHash.miner%></td>
+      </tr>
+      <tr>
+        <td><b>Difficulty:</b></td>
+        <td><%= txnHash.difficulty%></td>
+      </tr>
+      <tr>
+        <td><b>Total Difficulty:</b></td>
+        <td><%= txnHash.totalDifficulty%></td>
+      </tr>
+      <tr>
+        <td><b>Size: </b></td>
+        <td><%= txnHash.size%> bytes</td>
+      </tr>
+      <tr>
+        <td><b>Gas Used:</b></td>
+        <td><%= txnHash.gasUsed%> wei</td>
+      </tr>
+      <tr>
+        <td><b>Gas Limit:</b></td>
+        <td><%= txnHash.gasLimit%> wei</td>
+      </tr>
+      <tr>
+        <td><b>Timestamp:</b></td>
+        <td><%= Date(txnHash.timestamp)%></td>
+      </tr>
+    
+      <tr>
+        <td><b>Nonce:</b></td>
+        <td><%= txnHash.nonce%></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>

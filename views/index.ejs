@@ -1,0 +1,217 @@
+<html>
+    <head>
+        <style>
+            /* Styles go here */
+.div-1 {
+    background-color: #08385e;
+    height: 152px;
+    width: 1400px;
+}
+
+
+
+
+
+
+
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  margin-left:-5px;
+  margin-right:-5px;
+}
+  
+.column {
+  float: left;
+  width: 50%;
+  padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 16px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+h2{
+    color: #ffffff;
+}
+
+
+.outer{
+        padding-top: 0%;
+        list-style-type: none;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+    .box{
+        display: inline-block;
+        padding: 0%;
+        width: 300px;
+        background-color: rgba(243, 239, 239, 0.938);
+
+    }
+
+
+
+    input {
+    padding: 4px 10px;
+    border: 0;
+    font-size: 19px;
+    width: 55%;
+    
+  }
+  .submit {
+    width: 70px;
+    background-color: #1c87c9;
+    color: #ffffff;
+  }
+        </style>
+    </head>
+    <body>
+Ethereum explorer
+
+
+    <div class="div-1">
+        &nbsp;<h2>&nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;
+  
+  The Ethereum Blockchain Explorer</h2>
+
+  <form action="/" method="post" target="blank">
+ &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;   
+ &nbsp;  &nbsp;  &nbsp;  &nbsp; 
+
+ 
+ <!-- <input   placeholder="Txn Hash / Block Number / Address"
+/>
+<input type="submit" value="Submit" /> -->
+
+
+
+
+<input type="text" name="txnHash"  id="search" autocomplete="off"  placeholder="Search by Address / Txn Hash / Block"/>
+<input type="submit" name="submit" class="submit" value="Search"/>
+</form>    
+
+ 
+     </div>
+
+
+     <div class="container">
+      
+         
+       
+        <div class="outer">
+            <div class="box"> 
+
+                <h5> Etherprice</h5>
+                <p id="latest-block">$3,806.19 @ 0.07951 BTC (-2.75%)</p>
+              </div>
+            
+                <div class="box"> 
+                   <h5>MED GAS PRICE</h5>
+                <p><%= gasFees %></p></div>
+           
+                <div class="box">
+                  <h5>Difficulty</h5>
+                  <p><%= difficulty %></p></div>
+
+                 
+                 
+      
+
+
+            </div>
+            <br>
+            &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;  <div class="box">  <h5 align="center">   MARKET CAP
+            </h5>
+              <p><center>$441,375,708,018.00</center>
+              </p></div>
+
+    
+            
+   <br><br><br><br>
+    <h3> &nbsp; &nbsp; &nbsp; &nbsp;Latest Blocks
+
+       
+<div class="row">
+    <div class="column">
+      <table><br><br>
+           <tr>
+         
+          <th>BK</th>
+          <!-- <th scope="col">Block Hash</th> -->
+          <th>Miner</th>
+          <!-- <th>Timestamp</th> -->
+
+        </tr>
+        
+      </thead>
+      <% for (let i = 0; i < 10; i++) { %>
+      <tbody>
+        <tr>
+      
+            <td><%= latestBlocks[i].number%></td>
+         
+          <!-- <td class="all-copy"><p><%= latestBlocks[i].hash%></p></td> -->
+          <td><%= latestBlocks[i].miner%></td>
+          <!-- <td><%= Date(latestBlocks[i].timestamp)%></td> -->
+        </tr>
+      </tbody>
+      <%}%>
+    </table>
+  </div>
+ 
+  <h3> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Latest Transactions</h3>
+
+  <div class="column">
+<table>
+         <tr>
+       
+        <th>TX</th>
+        <th scope="col"> Hash</th>
+        <!-- <th>Miner</th> -->
+        <th>Timestamp</th>
+
+      </tr>
+      
+    </thead>
+    <% for (let i = 0; i < 10; i++) { %>
+    <tbody>
+      <tr>
+   
+          <!-- <td><%= latestBlocks[i].number%></td> -->
+       
+          <td class="all-copy"><p><%= latestBlocks[i].transactions%></p></td>
+          <!-- <td class="all-copy"><p><%= latestBlocks[i].hash%></p></td> -->
+          <!-- <td><%= latestBlocks[i].miner%></td> -->
+        <td><%= latestBlocks[i].timestamp%></td>
+      </tr>
+    </tbody>
+    <%}%>
+  </table>
+</div>
+</div>
+
+</body>
+  </html>
