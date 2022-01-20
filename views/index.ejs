@@ -10,10 +10,6 @@
 
 
 
-
-
-
-
 * {
   box-sizing: border-box;
 }
@@ -68,7 +64,7 @@ h2{
         display: inline-block;
         padding: 0%;
         width: 300px;
-        background-color: rgba(243, 239, 239, 0.938);
+        background-color: rgba(236, 219, 219, 0.938);
 
     }
 
@@ -88,6 +84,7 @@ h2{
   }
         </style>
     </head>
+
     <body>
 Ethereum explorer
 
@@ -116,6 +113,7 @@ Ethereum explorer
  
      </div>
 
+     <br>
 
      <div class="container">
       
@@ -123,7 +121,6 @@ Ethereum explorer
        
         <div class="outer">
             <div class="box"> 
-
                 <h5> Etherprice</h5>
                 <p id="latest-block">$3,806.19 @ 0.07951 BTC (-2.75%)</p>
               </div>
@@ -136,24 +133,20 @@ Ethereum explorer
                   <h5>Difficulty</h5>
                   <p><%= difficulty %></p></div>
 
-                 
-                 
       
 
 
             </div>
             <br>
-            &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;  <div class="box">  <h5 align="center">   MARKET CAP
+            &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;   &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;  <div class="box">  <h5 align="center">   MARKET CAP
             </h5>
               <p><center>$441,375,708,018.00</center>
               </p></div>
 
-    
-            
    <br><br><br><br>
     <h3> &nbsp; &nbsp; &nbsp; &nbsp;Latest Blocks
 
-       
+
 <div class="row">
     <div class="column">
       <table><br><br>
@@ -162,7 +155,7 @@ Ethereum explorer
           <th>BK</th>
           <!-- <th scope="col">Block Hash</th> -->
           <th>Miner</th>
-          <th>Timestamp</th> 
+          <!-- <th>Timestamp</th> -->
 
         </tr>
         
@@ -175,7 +168,7 @@ Ethereum explorer
          
           <!-- <td class="all-copy"><p><%= latestBlocks[i].hash%></p></td> -->
           <td><%= latestBlocks[i].miner%></td>
-   <td><%= Date(latestBlocks[i].timestamp)%></td>
+          <!-- <td><%= Date(latestBlocks[i].timestamp)%></td> -->
         </tr>
       </tbody>
       <%}%>
@@ -214,4 +207,19 @@ Ethereum explorer
 </div>
 
 </body>
+<div id="message"></div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+
+  var socket = io();
+
+  socket.on('message-1', function(msg){
+    console.log(msg);
+    // document.getElementById("message").innerHTML = msg;
+    window.alert("Block number is " + msg);
+  });
+
+</script>
+  
   </html>
