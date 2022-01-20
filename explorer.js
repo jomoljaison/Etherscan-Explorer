@@ -1,8 +1,17 @@
 const express = require("express");
-const Web3 = require("web3");
-var url ="";
-const web3 = new Web3(new Web3.providers.HttpProvider(url));
+const res = require("express/lib/response");
+const Web3 = require("web3"); 
+
+var http = require('http');
+const socketIO = require("socket.io");
+
 const app = express();
+var server = http.Server(app);
+var io     = socketIO(server);
+
+var url =
+  "wss://mainnet.infura.io/ws/v3/bf72c5f55df247648fcee4002c046b6d";
+const web3 = new Web3(new Web3.providers.WebsocketProvider(url));
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
@@ -12,14 +21,53 @@ let block = "";
 let address = "";
 
 
+
+
+
+
+web3.eth.getAccounts().then(accounts => {
+
+  display_account(accounts)
+})
+
+
+function display_account(accounts){
+
+
+  web3.eth.subscribe('newBlockHeaders', (err, ret) => {
+
+      if (err){ 
+
+          console.log("error: ", err)
+
+      } else {
+
+       
+          var blocknum=ret.number;
+          io.emit('message-1', blocknum)            
+        console.log("New Block is ",blocknum);
+      }
+
+  })
+
+
+
+}
+
+
+
+
+
 app.get("/", async (req, res) => {
   const latestBlockData = await web3.eth.getBlock("latest");
   block = latestBlockData;
   const gasFees = await web3.eth.getGasPrice();
-  // const getHashrate = await web3.eth.getHashrate();
   const latestBlocks = [];
   const difficulty = latestBlockData.difficulty;
   const latestBlockNumber = latestBlockData.number;
+
+
+
   for (let i = 0; i < 10; i++) {
     block = await web3.eth.getBlock(latestBlockData.number - i);
     latestBlocks.push(block);
@@ -95,6 +143,7 @@ app.post("/blockdetails", async (req, res) => {
     } else {
       txnHash = await web3.eth.getTransaction(hash);
       res.redirect("/hash");
+     
     }
   } else {
     txnHash = await web3.eth.getBlock(hash);
@@ -128,6 +177,9 @@ app.post("/addressdetails", async (req, res) => {
   }
 });
 
-app.listen(3000, (req, res) => {
-  console.log("");
+// use this instead of app.listen
+server.listen(3000, () => {
+
+  console.log('listening on 3000')
+
 });
